@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333333;
+  background-color: #fcfaf7;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, serif;
+  color: #8b4513;
+  margin-bottom: 12px;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+a {
+  color: #8b4513;
+}
+
+a:hover {
+  color: #333333;
+}
