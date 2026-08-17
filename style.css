@@ -37,3 +37,155 @@ a {
 a:hover {
   color: #333333;
 }
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px 15px;
+  border-bottom: 2px solid #8b4513;
+}
+
+header img {
+  max-width: 140px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+nav {
+  width: 100%;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+nav li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #8b4513;
+  background-color: #fcfaf7;
+  border: 1px solid #8b4513;
+  border-radius: 4px;
+  padding: 10px;
+  display: block;
+  text-align: center;
+}
+
+main {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+section {
+  margin-bottom: 25px;
+}
+
+img, picture img, video, audio {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 15px 0;
+  border-radius: 4px;
+}
+
+figure {
+  margin: 15px 0;
+}
+
+figcaption {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #555555;
+  margin-top: 5px;
+}
+
+main ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+main li {
+  margin-bottom: 8px;
+}
+
+form {
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+fieldset {
+  border: 1px solid #8b4513;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+legend {
+  font-weight: bold;
+  color: #8b4513;
+  padding: 0 6px;
+}
+
+form p {
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: #8b4513;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #333333;
+}
+
+footer {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px 15px;
+  margin-top: 30px;
+  border-top: 1px solid #cccccc;
+  font-size: 0.85rem;
+}
