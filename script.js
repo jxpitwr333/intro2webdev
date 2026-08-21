@@ -104,6 +104,24 @@ const products = [
 
 const productGrid = document.getElementById("product-grid");
 
+let currentCategory = "all";
+
+function getProductsByCategory(category) {
+  if (category === "all") {
+    return products;
+  }
+
+  const matches = [];
+
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].category === category) {
+      matches.push(products[i]);
+    }
+  }
+
+  return matches;
+}
+
 function createProductCard(product) {
   const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
 
@@ -118,9 +136,29 @@ function createProductCard(product) {
 }
 
 function renderProducts() {
-  productGrid.innerHTML = products.map(product => createProductCard(product)).join("");
+  const visible = getProductsByCategory(currentCategory);
+  productGrid.innerHTML = visible.map(product => createProductCard(product)).join("");
+}
+
+function setupCategoryFilters() {
+  const buttons = document.querySelectorAll(".filter-button");
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function (event) {
+      const clicked = event.target;
+
+      for (let j = 0; j < buttons.length; j++) {
+        buttons[j].classList.remove("active");
+      }
+
+      clicked.classList.add("active");
+      currentCategory = clicked.dataset.category;
+      renderProducts();
+    });
+  }
 }
 
 if (productGrid) {
+  setupCategoryFilters();
   renderProducts();
 }
