@@ -136,6 +136,9 @@ function getProductsByCategory(category) {
 
 function createProductCard(product) {
   const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
+  const alreadyAdded = wishlistIds.includes(product.id);
+  const buttonLabel = alreadyAdded ? "Added" : "Add to pre-order";
+  const buttonClass = alreadyAdded ? "add-button added" : "add-button";
 
   return `
     <article class="product-card" data-id="${product.id}">
@@ -143,7 +146,7 @@ function createProductCard(product) {
       ${badge}
       <p class="product-price">$${product.price.toFixed(2)} per ${product.unit}</p>
       <p>${product.description}</p>
-      <button type="button" class="add-button" data-id="${product.id}">Add to pre-order</button>
+      <button type="button" class="${buttonClass}" data-id="${product.id}">${buttonLabel}</button>
     </article>
   `;
 }
@@ -153,6 +156,7 @@ function addToWishlist(id) {
     wishlistIds.push(id);
   }
 
+  renderProducts();
   renderWishlist();
 }
 
