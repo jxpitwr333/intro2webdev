@@ -117,6 +117,44 @@ main li {
   margin-bottom: 8px;
 }
 
+#product-grid {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.product-card {
+  background-color: #FFF8F0;
+  border: 1px solid #6B3E26;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.product-card h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.product-card p {
+  margin-bottom: 8px;
+}
+
+.product-badge {
+  display: inline-block;
+  background-color: #6B3E26;
+  color: #FFF8F0;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #6B3E26;
+}
+
 form {
   background-color: #FFF8F0;
   padding: 15px;
@@ -233,6 +271,11 @@ footer {
 
   main {
     padding: 30px 20px;
+  }
+
+  #product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
   form {
