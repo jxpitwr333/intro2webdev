@@ -397,7 +397,24 @@ function validateForm() {
   return isValid;
 }
 
+function setupLiveErrorClearing() {
+  for (let i = 0; i < formFields.length; i++) {
+    const fieldId = formFields[i];
+    const field = document.getElementById(fieldId);
+
+    field.addEventListener("input", function () {
+      clearError(fieldId);
+    });
+
+    field.addEventListener("change", function () {
+      clearError(fieldId);
+    });
+  }
+}
+
 if (preorderForm) {
+  setupLiveErrorClearing();
+
   preorderForm.addEventListener("submit", function (event) {
     event.preventDefault();
     clearAllErrors();
