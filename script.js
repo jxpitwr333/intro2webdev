@@ -310,3 +310,78 @@ function prefillOrderDetails() {
 if (itemDetails) {
   prefillOrderDetails();
 }
+
+const preorderForm = document.getElementById("preorder-form");
+const formSuccess = document.getElementById("form-success");
+const formFields = ["name", "email", "pickup-date", "request-type", "item-details"];
+
+function showError(inputId, message) {
+  const input = document.getElementById(inputId);
+  const errorSpan = document.getElementById(inputId + "-error");
+
+  input.classList.add("input-error");
+  errorSpan.textContent = message;
+}
+
+function clearError(inputId) {
+  const input = document.getElementById(inputId);
+  const errorSpan = document.getElementById(inputId + "-error");
+
+  input.classList.remove("input-error");
+  errorSpan.textContent = "";
+}
+
+function clearAllErrors() {
+  for (let i = 0; i < formFields.length; i++) {
+    clearError(formFields[i]);
+  }
+}
+
+function validateForm() {
+  let isValid = true;
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const pickupDate = document.getElementById("pickup-date").value;
+  const requestType = document.getElementById("request-type").value;
+
+  if (name.trim() === "") {
+    showError("name", "Please tell us your name.");
+    isValid = false;
+  }
+
+  if (email.trim() === "") {
+    showError("email", "Please enter an email address.");
+    isValid = false;
+  }
+
+  if (pickupDate === "") {
+    showError("pickup-date", "Please choose a pickup date.");
+    isValid = false;
+  }
+
+  if (requestType === "") {
+    showError("request-type", "Please choose a request type.");
+    isValid = false;
+  }
+
+  if (itemDetails.value.trim() === "") {
+    showError("item-details", "Let us know what you would like to order.");
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+if (preorderForm) {
+  preorderForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    clearAllErrors();
+    formSuccess.classList.add("hidden");
+
+    if (validateForm()) {
+      formSuccess.classList.remove("hidden");
+      preorderForm.reset();
+    }
+  });
+}

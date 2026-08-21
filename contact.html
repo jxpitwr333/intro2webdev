@@ -28,23 +28,27 @@
     <p>Phone: (555) 234-5678 | Email: hello@northstarbakery.com</p>
 
     <h2>Pre-Order and Inquiry Form</h2>
-    <form action="#" method="post">
+    <p id="form-success" class="form-success hidden">Thanks! We got your request and will reply within one business day.</p>
+    <form action="#" method="post" id="preorder-form" novalidate>
       <fieldset>
         <legend>Pre-Order and General Inquiry Form</legend>
 
         <p>
           <label for="name">Full Name</label>
           <input type="text" id="name" name="name" required>
+          <span class="error-message" id="name-error"></span>
         </p>
 
         <p>
           <label for="email">Email Address</label>
           <input type="email" id="email" name="email" required>
+          <span class="error-message" id="email-error"></span>
         </p>
 
         <p>
           <label for="pickup-date">Pickup Date</label>
           <input type="date" id="pickup-date" name="pickup-date" required>
+          <span class="error-message" id="pickup-date-error"></span>
         </p>
 
         <p>
@@ -55,11 +59,13 @@
             <option value="General Question">General Question</option>
             <option value="Event Catering">Event Catering</option>
           </select>
+          <span class="error-message" id="request-type-error"></span>
         </p>
 
         <p>
           <label for="item-details">Item Details</label>
           <textarea id="item-details" name="item-details" required placeholder="Specify items and quantities..."></textarea>
+          <span class="error-message" id="item-details-error"></span>
         </p>
 
         <p>
