@@ -366,6 +366,19 @@ function validateForm() {
   if (pickupDate === "") {
     showError("pickup-date", "Please choose a pickup date.");
     isValid = false;
+  } else {
+    // the T00:00:00 keeps the browser from reading the date as UTC and shifting it a day
+    const chosen = new Date(pickupDate + "T00:00:00");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (chosen < today) {
+      showError("pickup-date", "Please choose a date that has not passed yet.");
+      isValid = false;
+    } else if (chosen.getDay() === 1) {
+      showError("pickup-date", "We are closed on Mondays. Please choose another day.");
+      isValid = false;
+    }
   }
 
   if (requestType === "") {
