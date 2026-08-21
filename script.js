@@ -103,8 +103,20 @@ const products = [
 ];
 
 const productGrid = document.getElementById("product-grid");
+const wishlistItems = document.getElementById("wishlist-items");
+const wishlistEmpty = document.getElementById("wishlist-empty");
+const wishlistCount = document.getElementById("wishlist-count");
 
 let currentCategory = "all";
+let wishlistIds = [];
+
+function getProductById(id) {
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].id === id) {
+      return products[i];
+    }
+  }
+}
 
 function getProductsByCategory(category) {
   if (category === "all") {
@@ -140,6 +152,23 @@ function renderProducts() {
   productGrid.innerHTML = visible.map(product => createProductCard(product)).join("");
 }
 
+function createWishlistItem(product) {
+  return `<li data-id="${product.id}">${product.name} - $${product.price.toFixed(2)}</li>`;
+}
+
+function renderWishlist() {
+  const chosen = wishlistIds.map(id => createWishlistItem(getProductById(id)));
+
+  wishlistItems.innerHTML = chosen.join("");
+  wishlistCount.textContent = wishlistIds.length;
+
+  if (wishlistIds.length === 0) {
+    wishlistEmpty.classList.remove("hidden");
+  } else {
+    wishlistEmpty.classList.add("hidden");
+  }
+}
+
 function setupCategoryFilters() {
   const buttons = document.querySelectorAll(".filter-button");
 
@@ -161,4 +190,5 @@ function setupCategoryFilters() {
 if (productGrid) {
   setupCategoryFilters();
   renderProducts();
+  renderWishlist();
 }

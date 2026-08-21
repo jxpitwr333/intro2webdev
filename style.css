@@ -117,6 +117,10 @@ main li {
   margin-bottom: 8px;
 }
 
+.hidden {
+  display: none;
+}
+
 .filter-controls {
   display: flex;
   flex-wrap: wrap;
