@@ -143,13 +143,34 @@ function createProductCard(product) {
       ${badge}
       <p class="product-price">$${product.price.toFixed(2)} per ${product.unit}</p>
       <p>${product.description}</p>
+      <button type="button" class="add-button" data-id="${product.id}">Add to pre-order</button>
     </article>
   `;
+}
+
+function addToWishlist(id) {
+  if (!wishlistIds.includes(id)) {
+    wishlistIds.push(id);
+  }
+
+  renderWishlist();
+}
+
+// innerHTML wipes the old buttons, so these get hooked up again after every render
+function setupAddButtons() {
+  const buttons = document.querySelectorAll(".add-button");
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function (event) {
+      addToWishlist(event.target.dataset.id);
+    });
+  }
 }
 
 function renderProducts() {
   const visible = getProductsByCategory(currentCategory);
   productGrid.innerHTML = visible.map(product => createProductCard(product)).join("");
+  setupAddButtons();
 }
 
 function createWishlistItem(product) {
