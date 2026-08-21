@@ -285,3 +285,28 @@ if (productGrid) {
   renderProducts();
   renderWishlist();
 }
+
+const itemDetails = document.getElementById("item-details");
+
+function buildOrderSummary() {
+  const lines = [];
+
+  for (let i = 0; i < wishlistIds.length; i++) {
+    const product = getProductById(wishlistIds[i]);
+    lines.push(product.name + " - $" + product.price.toFixed(2));
+  }
+
+  return lines.join("\n");
+}
+
+function prefillOrderDetails() {
+  loadWishlist();
+
+  if (wishlistIds.length > 0 && itemDetails.value === "") {
+    itemDetails.value = buildOrderSummary();
+  }
+}
+
+if (itemDetails) {
+  prefillOrderDetails();
+}
