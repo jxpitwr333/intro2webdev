@@ -194,6 +194,7 @@ function removeFromWishlist(id) {
 
 function clearWishlist() {
   wishlistIds = [];
+  localStorage.removeItem(storageKey);
   renderProducts();
   renderWishlist();
 }
