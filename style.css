@@ -188,6 +188,78 @@ main li {
   color: #6B3E26;
 }
 
+.add-button {
+  width: 100%;
+  background-color: #6B3E26;
+  color: #FFF8F0;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #D88C5A;
+}
+
+.add-button.added {
+  background-color: #FFF8F0;
+  color: #6B3E26;
+  border: 1px solid #6B3E26;
+}
+
+#wishlist-panel {
+  background-color: #FFF8F0;
+  border: 2px solid #6B3E26;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+#wishlist-panel h2 {
+  margin-top: 0;
+}
+
+#wishlist-items {
+  list-style: none;
+  padding-left: 0;
+}
+
+#wishlist-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #D88C5A;
+  padding-bottom: 8px;
+}
+
+.remove-button {
+  background-color: transparent;
+  color: #6B3E26;
+  border: 1px solid #6B3E26;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+#clear-wishlist {
+  background-color: #6B3E26;
+  color: #FFF8F0;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 form {
   background-color: #FFF8F0;
   padding: 15px;
