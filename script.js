@@ -109,8 +109,22 @@ const wishlistCount = document.getElementById("wishlist-count");
 const wishlistTotal = document.getElementById("wishlist-total");
 const clearButton = document.getElementById("clear-wishlist");
 
+const storageKey = "nsb_preorder_list";
+
 let currentCategory = "all";
 let wishlistIds = [];
+
+function saveWishlist() {
+  localStorage.setItem(storageKey, JSON.stringify(wishlistIds));
+}
+
+function loadWishlist() {
+  const saved = localStorage.getItem(storageKey);
+
+  if (saved !== null) {
+    wishlistIds = JSON.parse(saved);
+  }
+}
 
 function getProductById(id) {
   for (let i = 0; i < products.length; i++) {
@@ -158,6 +172,7 @@ function addToWishlist(id) {
     wishlistIds.push(id);
   }
 
+  saveWishlist();
   renderProducts();
   renderWishlist();
 }
@@ -172,6 +187,7 @@ function removeFromWishlist(id) {
   }
 
   wishlistIds = kept;
+  saveWishlist();
   renderProducts();
   renderWishlist();
 }
@@ -262,6 +278,7 @@ function setupCategoryFilters() {
 }
 
 if (productGrid) {
+  loadWishlist();
   setupCategoryFilters();
   clearButton.addEventListener("click", clearWishlist);
   renderProducts();
