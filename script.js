@@ -337,6 +337,11 @@ function clearAllErrors() {
   }
 }
 
+function isValidEmail(email) {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
+
 function validateForm() {
   let isValid = true;
 
@@ -353,6 +358,9 @@ function validateForm() {
   if (email.trim() === "") {
     showError("email", "Please enter an email address.");
     isValid = false;
+  } else if (!isValidEmail(email)) {
+    showError("email", "That does not look like a valid email address.");
+    isValid = false;
   }
 
   if (pickupDate === "") {
@@ -367,6 +375,9 @@ function validateForm() {
 
   if (itemDetails.value.trim() === "") {
     showError("item-details", "Let us know what you would like to order.");
+    isValid = false;
+  } else if (itemDetails.value.trim().length < 10) {
+    showError("item-details", "Please add a little more detail so we can prepare your order.");
     isValid = false;
   }
 
