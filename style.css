@@ -326,6 +326,28 @@ button[type="submit"]:hover {
   background-color: #D88C5A;
 }
 
+.error-message {
+  display: block;
+  color: #A83232;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+input.input-error,
+select.input-error,
+textarea.input-error {
+  border: 2px solid #A83232;
+}
+
+.form-success {
+  background-color: #6B3E26;
+  color: #FFF8F0;
+  border-radius: 4px;
+  padding: 12px 15px;
+  font-weight: bold;
+}
+
 footer {
   text-align: center;
   background-color: #FFF8F0;
