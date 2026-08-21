@@ -106,6 +106,8 @@ const productGrid = document.getElementById("product-grid");
 const wishlistItems = document.getElementById("wishlist-items");
 const wishlistEmpty = document.getElementById("wishlist-empty");
 const wishlistCount = document.getElementById("wishlist-count");
+const wishlistTotal = document.getElementById("wishlist-total");
+const clearButton = document.getElementById("clear-wishlist");
 
 let currentCategory = "all";
 let wishlistIds = [];
@@ -160,6 +162,26 @@ function addToWishlist(id) {
   renderWishlist();
 }
 
+function removeFromWishlist(id) {
+  const kept = [];
+
+  for (let i = 0; i < wishlistIds.length; i++) {
+    if (wishlistIds[i] !== id) {
+      kept.push(wishlistIds[i]);
+    }
+  }
+
+  wishlistIds = kept;
+  renderProducts();
+  renderWishlist();
+}
+
+function clearWishlist() {
+  wishlistIds = [];
+  renderProducts();
+  renderWishlist();
+}
+
 // innerHTML wipes the old buttons, so these get hooked up again after every render
 function setupAddButtons() {
   const buttons = document.querySelectorAll(".add-button");
@@ -178,7 +200,32 @@ function renderProducts() {
 }
 
 function createWishlistItem(product) {
-  return `<li data-id="${product.id}">${product.name} - $${product.price.toFixed(2)}</li>`;
+  return `
+    <li>
+      ${product.name} - $${product.price.toFixed(2)}
+      <button type="button" class="remove-button" data-id="${product.id}">Remove</button>
+    </li>
+  `;
+}
+
+function calculateTotal() {
+  let total = 0;
+
+  for (let i = 0; i < wishlistIds.length; i++) {
+    total = total + getProductById(wishlistIds[i]).price;
+  }
+
+  return total;
+}
+
+function setupRemoveButtons() {
+  const buttons = document.querySelectorAll(".remove-button");
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function (event) {
+      removeFromWishlist(event.target.dataset.id);
+    });
+  }
 }
 
 function renderWishlist() {
@@ -186,6 +233,8 @@ function renderWishlist() {
 
   wishlistItems.innerHTML = chosen.join("");
   wishlistCount.textContent = wishlistIds.length;
+  wishlistTotal.textContent = "$" + calculateTotal().toFixed(2);
+  setupRemoveButtons();
 
   if (wishlistIds.length === 0) {
     wishlistEmpty.classList.remove("hidden");
@@ -214,6 +263,7 @@ function setupCategoryFilters() {
 
 if (productGrid) {
   setupCategoryFilters();
+  clearButton.addEventListener("click", clearWishlist);
   renderProducts();
   renderWishlist();
 }
