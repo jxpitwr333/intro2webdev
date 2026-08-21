@@ -101,3 +101,26 @@ const products = [
     badge: "Custom"
   }
 ];
+
+const productGrid = document.getElementById("product-grid");
+
+function createProductCard(product) {
+  const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
+
+  return `
+    <article class="product-card" data-id="${product.id}">
+      <h3>${product.name}</h3>
+      ${badge}
+      <p class="product-price">$${product.price.toFixed(2)} per ${product.unit}</p>
+      <p>${product.description}</p>
+    </article>
+  `;
+}
+
+function renderProducts() {
+  productGrid.innerHTML = products.map(product => createProductCard(product)).join("");
+}
+
+if (productGrid) {
+  renderProducts();
+}
